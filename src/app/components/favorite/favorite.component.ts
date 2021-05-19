@@ -52,11 +52,7 @@ favList:Favorite[];
    this.ngOnInit();
    console.log("purvi");
    //console.log(this.favList[0]);
-    }),
-      err => {
-        this.ngOnInit();
-        console.log("Error");
-      }   
+    });  
       }
 
 

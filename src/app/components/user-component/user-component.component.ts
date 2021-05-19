@@ -13,6 +13,7 @@ import { AppComponent } from 'src/app/app.component';
   })
   export class UserComponentComponent implements OnInit {
     user = new User();
+    token:string;
       private baseUrl='http://localhost:9191/';
       private registerUrl=this.baseUrl+'register';
       private authorizationUrl=this.baseUrl+"authentication";
@@ -34,11 +35,14 @@ import { AppComponent } from 'src/app/app.component';
      const headers = { 'content-type': 'application/json'} ; 
     const body=JSON.stringify(this.user);
     //  console.log(this.registerUrl+" "+body+" "+headers);
-    var result= this.httpClient.post(this.registerUrl,body,{'headers':headers})
-    .subscribe((result)=>{
-    console.log("result",result);
-    })
-    this.alertMessage="registered";
+     this.httpClient.post(this.registerUrl,body,{'headers':headers})
+          .subscribe(
+        data => console.log('success', data),
+        error => {console.log('oops',error.error.response),
+        this.alertMessage=error.error.response}
+      );
+ 
+   // this.alertMessage="registered";
     this.alert=true;
     }
     change(){
@@ -52,16 +56,17 @@ import { AppComponent } from 'src/app/app.component';
     //const body=JSON.stringify(reqBody);
       console.log(this.authorizationUrl+" "+reqBody+" "+headers);
     this.httpClient.post(this.authorizationUrl,reqBody,{'headers':headers})
-    .subscribe((result)=>{
-    console.log("result",result);
-    this.appComponent.setToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDM5NTUwLCJpYXQiOjE2MjE0MDM1NTB9.LsLW0EVEw95L815Mt41A2ovVUkSUcZVf4nGhWOfCW1M");
-    })
+          .subscribe(
+        data =>{ this.token=data.response,this.alertMessage="Logged In",console.log('success',this.token)},
+        error => {this.alertMessage="Invalid Credentials",console.log('oops',error.error.response)}
+        
+      );
+      
     
-    this.alertMessage="login";
     this.alert=true;
     
     }
-    token(){
+    fun(){
           this.appComponent.setToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDM5NTUwLCJpYXQiOjE2MjE0MDM1NTB9.LsLW0EVEw95L815Mt41A2ovVUkSUcZVf4nGhWOfCW1M");
           console.log(this.appComponent.getToken());
           this.ngOnInit();
