@@ -19,7 +19,6 @@ favList:Favorite[];
     private baseUrl ='http://localhost:9191/';
   private getFavUrl =this.baseUrl+'fav';
   private removeFromFavUrl=this.baseUrl+'RemoveFromFavourite/';
-  private addToFavouriteUrl=this.baseUrl+'AddToFavourite/';
   constructor( favService : FavoriteService,
               private router: Router,
               private appComponent:AppComponent,
@@ -28,7 +27,7 @@ favList:Favorite[];
 
   ngOnInit(): void {
     this.token=this.appComponent.getToken();
-    this.token="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDQ2NzcxLCJpYXQiOjE2MjE0MTA3NzF9.wRVX21AJul6UGQ95GkoE5bRdYAO6snKBX7WHRQ0dNvk";
+    this.token="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDM5NTUwLCJpYXQiOjE2MjE0MDM1NTB9.LsLW0EVEw95L815Mt41A2ovVUkSUcZVf4nGhWOfCW1M";
     console.warn(this.token);
     this.getFav();
     

@@ -54,7 +54,7 @@ import { AppComponent } from 'src/app/app.component';
     this.httpClient.post(this.authorizationUrl,reqBody,{'headers':headers})
     .subscribe((result)=>{
     console.log("result",result);
-    this.appComponent.setToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDQ2NzcxLCJpYXQiOjE2MjE0MTA3NzF9.wRVX21AJul6UGQ95GkoE5bRdYAO6snKBX7WHRQ0dNvk");
+    this.appComponent.setToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDM5NTUwLCJpYXQiOjE2MjE0MDM1NTB9.LsLW0EVEw95L815Mt41A2ovVUkSUcZVf4nGhWOfCW1M");
     })
     
     this.alertMessage="login";
@@ -62,7 +62,7 @@ import { AppComponent } from 'src/app/app.component';
     
     }
     token(){
-          this.appComponent.setToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDQ2NzcxLCJpYXQiOjE2MjE0MTA3NzF9.wRVX21AJul6UGQ95GkoE5bRdYAO6snKBX7WHRQ0dNvk");
+          this.appComponent.setToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDM5NTUwLCJpYXQiOjE2MjE0MDM1NTB9.LsLW0EVEw95L815Mt41A2ovVUkSUcZVf4nGhWOfCW1M");
           console.log(this.appComponent.getToken());
           this.ngOnInit();
     }

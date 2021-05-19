@@ -28,7 +28,13 @@
                                                 <p class="card-text">
                                                 {{tempBook.description}}
                                                 </p>
-                                                <a href="#" class="btn btn-primary">Add To Favourite</a>
+                                                <p class="card-text">
+                                                <b>Authored By</b> {{tempBook.author}}
+                                                </p>
+                                                <p class="card-text">
+                                                <b>Contributed</b> {{tempBook.contributor}}
+</p>
+                                                <button class="btn btn-primary" (click)="addToFavourite(tempBook.book_id)">Add To Favourite</button>
                                             </div>
                                             </div>
 

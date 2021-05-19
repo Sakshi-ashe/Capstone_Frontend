@@ -32,13 +32,14 @@ export class BookListComponent implements OnInit {
   previousKeyword: string = null;
     private baseUrl ='http://localhost:9191/';
   private getAllBooksUrl =this.baseUrl+'getAllBooks';
-  constructor( bookService : BookService,
+  private addToFavouriteUrl=this.baseUrl+'AddToFavourite/';
+    constructor( bookService : BookService,
                 private appComponent:AppComponent,
               private route: ActivatedRoute,
               private httpClient : HttpClient) { }
 
   ngOnInit(): void {
-    this.token="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDQ2NzcxLCJpYXQiOjE2MjE0MTA3NzF9.wRVX21AJul6UGQ95GkoE5bRdYAO6snKBX7WHRQ0dNvk";
+    this.token="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDM5NTUwLCJpYXQiOjE2MjE0MDM1NTB9.LsLW0EVEw95L815Mt41A2ovVUkSUcZVf4nGhWOfCW1M";
     this.getAllBooks();
     
   }
@@ -53,6 +54,22 @@ export class BookListComponent implements OnInit {
    console.log(this.books[0]);
     })
   }
+   addToFavourite(id){
+         const headers = { 'content-type': 'application/json','Authorization':'Bearer '+this.token} ; 
+        console.log(id,this.addToFavouriteUrl+id,headers);
+        this.httpClient.post(this.addToFavouriteUrl+id,{'headers':headers})
+    .subscribe((result)=>{
+   console.log("result",result);
+   this.ngOnInit();
+   console.log("purvi");
+   //console.log(this.favList[0]);
+    }),
+      err => {
+        this.ngOnInit();
+        console.log("Error");
+      }   
+      }
+
   listBooks(){
 
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
