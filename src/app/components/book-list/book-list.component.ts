@@ -38,7 +38,7 @@ export class BookListComponent implements OnInit {
               private httpClient : HttpClient) { }
 
   ngOnInit(): void {
-    this.token=this.appComponent.getToken();
+    this.token="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjAwIiwiZXhwIjoxNjIxNDQ2NzcxLCJpYXQiOjE2MjE0MTA3NzF9.wRVX21AJul6UGQ95GkoE5bRdYAO6snKBX7WHRQ0dNvk";
     this.getAllBooks();
     
   }
