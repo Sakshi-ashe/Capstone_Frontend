@@ -36,23 +36,27 @@ favList:Favorite[];
  const headers = { 'content-type': 'application/json','Authorization':'Bearer '+this.token} ; 
     console.log(headers);
      this.httpClient.get(this.getFavUrl,{'headers':headers})
-    .subscribe((result)=>{
-      this.favList = JSON.parse(JSON.stringify(result));
-   console.log("result",result);
-   console.log(this.favList);
-   console.log(this.favList[0]);
-    })
+      .subscribe(
+        data => {  
+            this.favList = JSON.parse(JSON.stringify(data)) 
+      },
+        error => {console.log('oops',error.error.response),
+        alert(error.error.response)}
+      );
   }
       removeFromFavourite(id){
          const headers = { 'content-type': 'application/json','Authorization':'Bearer '+this.token} ; 
         console.log(id);
         this.httpClient.delete(this.removeFromFavUrl+id,{'headers':headers})
-    .subscribe((result)=>{
-   console.log("result",result);
-   this.ngOnInit();
-   console.log("purvi");
-   //console.log(this.favList[0]);
-    });  
+          .subscribe(
+        data => {  
+          console.log(data),
+              alert(data.response)
+              this.ngOnInit()
+        },
+        error => {console.log('oops',error.error.response),
+        alert(error.error.response)}
+      );
       }
 
 

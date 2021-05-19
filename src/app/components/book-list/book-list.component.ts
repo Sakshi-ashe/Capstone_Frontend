@@ -15,9 +15,7 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-
   books: Book[];
-
   currentCategoryId: number = 1;
 
   currentCategoryName: string;
@@ -47,27 +45,21 @@ export class BookListComponent implements OnInit {
  const headers = { 'content-type': 'application/json','Authorization':'Bearer '+this.token} ; 
     console.log(headers);
      this.httpClient.get(this.getAllBooksUrl,{'headers':headers})
-    .subscribe((result)=>{
-      this.books = JSON.parse(JSON.stringify(result));
-   console.log("result",result);
-   console.log(this.books);
-   console.log(this.books[0]);
-    })
+   .subscribe(
+        data =>{ this.books = JSON.parse(JSON.stringify(data)),console.log('success',data)},
+        error => {alert(error.error.response),console.log('oops',error.error.response)}
+        
+      );
   }
    addToFavourite(id){
          const headers = { 'content-type': 'application/json','Authorization':'Bearer '+this.token} ; 
         console.log(id,this.addToFavouriteUrl+id,headers);
         this.httpClient.post(this.addToFavouriteUrl+id,{'headers':headers})
-    .subscribe((result)=>{
-   console.log("result",result);
-   this.ngOnInit();
-   console.log("purvi");
-   //console.log(this.favList[0]);
-    }),
-      err => {
-        this.ngOnInit();
-        console.log("Error");
-      }   
+     .subscribe(
+        data =>{ this.books = JSON.parse(JSON.stringify(data)),alert(data.data.response),console.log('success',data)},
+        error => {alert(error.error.message),console.log('oops',error.error.message)}
+        
+      );
       }
 
   listBooks(){

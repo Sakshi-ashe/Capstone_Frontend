@@ -18,15 +18,12 @@ import { AppComponent } from 'src/app/app.component';
       private registerUrl=this.baseUrl+'register';
       private authorizationUrl=this.baseUrl+"authentication";
      registerView=0;
-     alertMessage="";
-     alert=false;
     constructor(private userService: UserService,
       private appComponent:AppComponent,
       private httpClient : HttpClient) {}
 
     ngOnInit(): void {
        this.registerView= 0;
-       this.alert=false;
     }
 
   addUser() {
@@ -37,17 +34,16 @@ import { AppComponent } from 'src/app/app.component';
     //  console.log(this.registerUrl+" "+body+" "+headers);
      this.httpClient.post(this.registerUrl,body,{'headers':headers})
           .subscribe(
-        data => console.log('success', data),
+        data => {console.log('success', data),
+        alert("Successfully registered")
+      },
         error => {console.log('oops',error.error.response),
-        this.alertMessage=error.error.response}
+        alert(error.error.response)}
       );
  
-   // this.alertMessage="registered";
-    this.alert=true;
     }
     change(){
       this.registerView= (this.registerView+1)%2;
-      this.alert=false;
     }
     loginUser(){
       console.log(this.user.userName+" "+this.user.password);
@@ -57,13 +53,12 @@ import { AppComponent } from 'src/app/app.component';
       console.log(this.authorizationUrl+" "+reqBody+" "+headers);
     this.httpClient.post(this.authorizationUrl,reqBody,{'headers':headers})
           .subscribe(
-        data =>{ this.token=data.response,this.alertMessage="Logged In",console.log('success',this.token)},
-        error => {this.alertMessage="Invalid Credentials",console.log('oops',error.error.response)}
+        data =>{ this.token=data.response,alert("Logged In"),console.log('success',this.token)},
+        error => {alert("Invalid Credentials"),console.log('oops',error.error.response)}
         
       );
       
     
-    this.alert=true;
     
     }
     fun(){
