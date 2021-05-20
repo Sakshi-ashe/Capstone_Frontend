@@ -25,6 +25,8 @@ export class SearchComponent implements OnInit {
     localStorage.clear();
     alert("Logged out")
     this.ngOnInit();
+    this.router.navigateByUrl('/register');
+
   }
   doSearch(value: string){
     console.log(`value=${value}`);
