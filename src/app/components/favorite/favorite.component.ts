@@ -44,8 +44,10 @@ export class FavoriteComponent implements OnInit {
           }
         },
         error => {
+          console.log("tingggggg")
           console.log('oops', error.error.response),
           alert(error.error.response)
+         //alert("ERROR");
         }
       );
   }
@@ -56,7 +58,7 @@ export class FavoriteComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data),
-            //  alert(data.response)
+              alert("removed successfully");
             this.ngOnInit()
         },
         error => {

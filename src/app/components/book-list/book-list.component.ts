@@ -18,6 +18,8 @@ export class BookListComponent implements OnInit {
   books: Book[];
   token: string;
 
+  bookNo: 0;
+
   previousKeyword: string = null;
   private baseUrl = 'http://localhost:9191/';
   private getAllBooksUrl = this.baseUrl + 'getAllBooks';
@@ -50,7 +52,11 @@ export class BookListComponent implements OnInit {
         error => { alert(error.error.response), console.log('oops', error) }
 
       );
+
+  
   }
+
+ 
 
   getAllBooks() {
     const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.token };

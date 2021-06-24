@@ -7,7 +7,7 @@
 
 						<div class="row">
                             <!-- loop over the collection of books -->
-                            <div *ngFor="let tempBook of books" class="col-md-12">
+                            <div *ngFor="let tempBook of books , let i = index"  class="col-md-6">
                                 <!-- <div class="product-box">
                                     <a routerLink="/books/{{tempBook.book_id}}">
                                         <img src="{{tempBook.imageUrl}}" class="img-responsive">
@@ -20,8 +20,12 @@
                                      <div class="price"> {{tempBook.unitPrice | currency:'USD'}} </div> -->
 <!--                                     <button (click)="addToFav(tempBook)" class="btn btn-primary btn-sm">Add to Favorite</button> 
                                 </div> -->
-                                            <div class="card" style="height: 100%;">
-                                            <div class="card-body">
+                                <div class="card" style="width: 25rem;">  
+                                    <br>                                   
+                                    <img src='assets/books/book{{(i+1)%7}}.jpeg' class="img-responsive center" width="100" height="150" >
+
+                                    <div class="card-body">
+                                                <br>
                                                 <h5 class="card-title">{{tempBook.title}}</h5>
                                                 <p class="card-text">
                                                 {{tempBook.description}}

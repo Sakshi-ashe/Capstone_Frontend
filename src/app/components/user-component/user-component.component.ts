@@ -57,7 +57,8 @@ export class UserComponentComponent implements OnInit {
     this.httpClient.post(this.authorizationUrl, reqBody, { 'headers': headers })
       .subscribe(
         data => {
-          this.token = data.response,
+          
+         this.token = data.response,
             alert("Logged In"),
             console.log('success', this.token),
             //this.searchComponent.ngOnInit();
